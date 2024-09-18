@@ -4,7 +4,8 @@ import { getSearchMovies } from "../fechApi";
 import { MovieList } from "../components/MovieList";
 
 export const MoviePage = () => {
-
+const [loading, setLoading] = useState(false);
+const [error, setError] = useState(false);
 const [searchParams, setSearchParams] = useSearchParams();
 const [movies, setMovie] = useState([]);
 
@@ -12,8 +13,15 @@ const queryWord = searchParams.get("query")
 
 useEffect(()=> {
     const searchMovie = async() => {
-        const movies = await getSearchMovies(queryWord);
-        setMovie(movies)
+        try {
+            setLoading(true)
+            const movies = await getSearchMovies(queryWord);
+            setMovie(movies)
+        } catch {
+            setError(true)
+        } finally {
+            setLoading(false)
+        }
     }
     searchMovie();
 }, [queryWord])
@@ -31,6 +39,8 @@ const handleSubmit = (e) => {
             <input type="text" name="query"/>
             <button type="submit">Search</button>
         </form>
+        {loading && (<p>Loading... </p>)}
+        {error && (<p>Something go wrong!</p>)}
         {queryWord && (<MovieList allMovies={movies} />)}
         </>
     )

@@ -1,4 +1,10 @@
 .actor_img {
     width: 100px;
     height: 150px;
+    object-fit: cover;
+}
+
+.info_box {
+    font-size: smaller;
+    margin-bottom: 20px;
 }

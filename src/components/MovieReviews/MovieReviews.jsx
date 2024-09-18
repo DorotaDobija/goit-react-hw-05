@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom";
-import { getReviewsOfMovie } from "../fechApi";
+import { getReviewsOfMovie } from "../../fechApi";
+import css from './MovieReviews.module.css'
 
 export const MovieReviews= () => {
     const [movieReviews, setMovieReviews] = useState([]);
@@ -23,13 +24,12 @@ export const MovieReviews= () => {
     getMovieReviews() 
    }, [movieId])
 
-console.log(movieReviews)
     return (<>
     {loading && (<p>Loading...</p>)}
     {error && (<p>Something go wrong!</p>)}
     {movieReviews.length > 0 ? (<ul>
         {movieReviews.map(review=><li key={review.id}>
-            <p>Author: {review.author}</p>
+            <p className={css.author_name}>Author: {review.author}</p>
             <p>{review.content}</p>
         </li>)}
     </ul>) : (<p>We dont have any reviews for this !</p>)}

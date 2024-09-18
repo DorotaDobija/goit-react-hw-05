@@ -1,0 +1,22 @@
+.movie_poster {
+    width: 200px;
+    height: 250px;
+    object-fit: cover;
+}
+.details_box {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: smaller;
+    padding-bottom: 10px;
+    border-bottom: 1px solid grey;
+    box-shadow: 0 2px 2px -2px gray;
+}
+
+h2, h3, h4, p {
+    margin: 5px 0px
+}
+
+.extra_info {
+    font-weight: 500;
+}

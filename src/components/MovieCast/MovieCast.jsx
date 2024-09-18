@@ -11,7 +11,6 @@ const [error, setError] = useState(false);
 
 const { movieId} = useParams();
 
-console.log(movieId)
 
     useEffect(() => {
         const getCast = async () => {
@@ -29,16 +28,15 @@ console.log(movieId)
         }
         getCast()
     
-    }, []);
+    }, [movieId]);
 
-    console.log(movieCast)
 
     return (<>
         {loading && (<p>Loading... </p>)}
         {error && (<p>Something go wrong!</p>)}
         {movieCast.length > 0 ? (<ul>
-            {movieCast.map(actor=><li key={actor.id}>
-                <img className={css.actor_img} src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`}></img>
+            {movieCast.map(actor=><li key={actor.id} className={css.info_box}>
+                <img className={css.actor_img} src={`https://image.tmdb.org/t/p/w1280/${actor.profile_path}`}></img>
                 <p>{actor.name}</p>
                 <p>Charakter: {actor.character}</p>
             </li>)}
